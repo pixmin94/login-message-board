@@ -1,4 +1,7 @@
-import React from "react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React from 'react';
+import NavBar from './components/Navbar'
+import Messages from './components/Messages'
 import './App.css';
 
 function App() {
@@ -12,9 +15,11 @@ function App() {
   
     return (
       <div className="App">
-        <header className="App-header">
+        <NavBar />
+        <Messages />
+        {/* <header className="App-header">
           <p>{!data ? "Loading..." : data}</p>
-        </header>
+        </header> */}
       </div>
     );
 }
