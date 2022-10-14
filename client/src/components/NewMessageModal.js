@@ -4,20 +4,24 @@ import { Dialog } from '@headlessui/react'
 function NewMessageModal({ isOpen, setIsOpen }) {
 
   return (
-    <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-      <Dialog.Panel>
-        <Dialog.Title>Title</Dialog.Title>
-        <Dialog.Description>
-          Description
-        </Dialog.Description>
+    <>
+      <button onClick={() => setIsOpen(true)}>New Message</button>
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
+        <Dialog.Panel>
+          <Dialog.Title>Title</Dialog.Title>
+          <Dialog.Description>
+            Description
+          </Dialog.Description>
 
-        <p>
-          Paragraph
-        </p>
+          <p>
+            Paragraph
+          </p>
 
-        <button onClick={() => setIsOpen(false)}>Cancel</button>
-      </Dialog.Panel>
-    </Dialog>
+          <button onClick={() => setIsOpen(false)}>Cancel</button>
+        </Dialog.Panel>
+      </Dialog>
+    </>
+
   )
 }
 

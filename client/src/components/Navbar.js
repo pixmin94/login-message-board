@@ -6,16 +6,16 @@ console.log('new')
 console.log(window.React1 === window.React2);
 
 function NavBar() {
-    let [isOpen, setIsOpen] = useState(true)
-    // console.log(isOpen)
+    let [isOpen, setIsOpen] = useState(false)
+    console.log(isOpen)
 
     return (
         <div>
             <h1>Forum</h1>
             <button>Login</button>
             <button>Register</button>
-            <button>New Message</button>
-            <Modal isOpen={true} setIsOpen={setIsOpen}/>
+            {/* <button>New Message</button> */}
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen}/>
             
         </div>
     );
