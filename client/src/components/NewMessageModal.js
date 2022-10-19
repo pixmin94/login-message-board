@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
+import { Form } from 'react-router-dom';
 
 function NewMessageModal({ isOpen, setIsOpen }) {
 
@@ -8,14 +9,22 @@ function NewMessageModal({ isOpen, setIsOpen }) {
       <button onClick={() => setIsOpen(true)}>New Message</button>
       <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
         <Dialog.Panel>
-          <Dialog.Title>Title</Dialog.Title>
+          <Dialog.Title>Add a new message</Dialog.Title>
           <Dialog.Description>
-            Description
+            <form>
+              <label>
+                Message:
+                <textarea />
+              </label>
+              <label>
+                Name:
+                <input type="text"/>
+              </label>
+              
+              <input type="submit" value="Submit" />
+            </form>
           </Dialog.Description>
-
-          <p>
-            Paragraph
-          </p>
+          
 
           <button onClick={() => setIsOpen(false)}>Cancel</button>
         </Dialog.Panel>
