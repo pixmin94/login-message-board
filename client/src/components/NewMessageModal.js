@@ -32,7 +32,6 @@ function NewMessageModal({ isOpen, setIsOpen }) {
             </form>
           </Dialog.Description>
           
-
           <button onClick={() => setIsOpen(false)}>Cancel</button>
         </Dialog.Panel>
       </Dialog>
