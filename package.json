@@ -21,7 +21,10 @@
   "dependencies": {
     "@headlessui/react": "^1.7.3",
     "concurrently": "^7.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "mongodb": "^4.11.0",
     "react-router-dom": "^6.4.2"
   }
 }
