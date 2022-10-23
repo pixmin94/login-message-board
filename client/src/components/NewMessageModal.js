@@ -3,12 +3,37 @@ import { Dialog } from '@headlessui/react'
 import { Form } from 'react-router-dom';
 
 function NewMessageModal({ isOpen, setIsOpen }) {
-  const [message, setMessage] = useState()
-  const [name, setName] = useState()
+  const [form, setForm] = useState({
+    message: "",
+    name: ""
+  })
 
-  function handleSubmit(event) {
+  function updateForm(value) {
+    return setForm((prev) => {
+      return { ...prev, ...value };
+    });
+  }
+  
+
+  async function handleSubmit(event) {
     event.preventDefault()
-    console.log(message)
+    const newMessage = { ...form };
+ 
+    await fetch("http://localhost:3001/record/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newMessage),
+    })
+    .catch(error => {
+      window.alert(error);
+      return;
+    });
+  
+    setForm({ message: "", name: "" });
+    setIsOpen(false);
+    window.location.reload();
   }
 
   return (
@@ -21,11 +46,11 @@ function NewMessageModal({ isOpen, setIsOpen }) {
             <form onSubmit={handleSubmit}>
               <label>
                 Message:
-                <textarea value={message} onChange={e => setMessage(e.target.value)}/>
+                <textarea value={form.message} onChange={e => updateForm({message: e.target.value})}/>
               </label>
               <label>
                 Name:
-                <input type="text" value={name} onChange={e => setName(e.target.value)}/>
+                <input type="text" value={form.name} onChange={e => updateForm({name: e.target.value})}/>
               </label>
               
               <input type="submit" value="Submit" />
