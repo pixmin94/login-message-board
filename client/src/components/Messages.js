@@ -5,8 +5,6 @@ function Messages() {
     return (
         <div>
             <Message />
-            <Message />
-            <Message />
         </div>
     );
 }

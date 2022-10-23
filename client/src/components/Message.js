@@ -1,11 +1,41 @@
-function Message(){
+import React, { useEffect, useState } from "react";
+
+export default function Message(){
+    const [records, setRecords] = useState([]);
+
+    // This method fetches the records from the database.
+    useEffect(() => {
+        async function getRecords() {
+        const response = await fetch(`http://localhost:3001/record/`);
+    
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`;
+            window.alert(message);
+            return;
+        }
+    
+        const records = await response.json();
+        setRecords(records);
+        }
+    
+        getRecords();
+        console.log(records)
+    
+        return;
+    }, [records.length]);
+
     return (
         <div>
-            <h3>Title</h3>
-            <span>Message goes here</span><br></br>
-            <span>Author name</span>
+            {records.map(record => {
+                return (
+                    <div key={record._id}>
+                        <h3>Title</h3>
+                        <span>"{record.message}"</span><br></br>
+                        <span>- {record.name}</span>
+                    </div>
+                )
+            })}
+            
         </div>
     );
 }
-
-export default Message;
