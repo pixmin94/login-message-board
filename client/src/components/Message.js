@@ -29,7 +29,7 @@ export default function Message(){
             {records.map(record => {
                 return (
                     <div key={record._id}>
-                        <h3>Title</h3>
+                        <h3>{record.title}</h3>
                         <span>"{record.message}"</span><br></br>
                         <span>- {record.name}</span>
                     </div>

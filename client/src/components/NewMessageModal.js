@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
-import { Form } from 'react-router-dom';
 
 function NewMessageModal({ isOpen, setIsOpen }) {
   const [form, setForm] = useState({
+    title: "",
     message: "",
     name: ""
   })
@@ -31,7 +31,7 @@ function NewMessageModal({ isOpen, setIsOpen }) {
       return;
     });
   
-    setForm({ message: "", name: "" });
+    setForm({ title: "", message: "", name: "" });
     setIsOpen(false);
     window.location.reload();
   }
@@ -44,6 +44,10 @@ function NewMessageModal({ isOpen, setIsOpen }) {
           <Dialog.Title>Add a new message</Dialog.Title>
           <Dialog.Description>
             <form onSubmit={handleSubmit}>
+              <label>
+                Title:
+                <input type="text" value={form.title} onChange={e => updateForm({title: e.target.value})}/>
+              </label>
               <label>
                 Message:
                 <textarea value={form.message} onChange={e => updateForm({message: e.target.value})}/>
