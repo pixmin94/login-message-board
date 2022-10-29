@@ -19,7 +19,6 @@ export default function Message(){
         }
     
         getRecords();
-        console.log(records)
     
         return;
     }, [records.length]);
