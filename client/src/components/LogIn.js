@@ -8,7 +8,7 @@ function Login({ isOpen, setIsOpen, user }) {
     email: "",
     password: ""
   })
-
+  const [button, setButton] = useState("Login")
   const auth = getAuth(app);
 
   function updateForm(value) {
@@ -33,10 +33,25 @@ function Login({ isOpen, setIsOpen, user }) {
     
   }
 
+  function buttonClick() {
+    if (user) {
+        auth.signOut();
+        console.log(user)
+    }
+    else {
+        setIsOpen(true)
+    }
+  }
+
+  useEffect(() => {
+    if (user) {
+        setButton("Logout")
+    }
+  })
 
   return (
     <>
-      <button onClick={buttonClick}>Login</button>
+      <button onClick={buttonClick}>{button}</button>
       <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
         <Dialog.Panel>
           <Dialog.Title>Login</Dialog.Title>
