@@ -19,7 +19,7 @@ function NewMessageModal({ isOpen, setIsOpen }) {
     event.preventDefault()
     const newMessage = { ...form };
  
-    await fetch("http://localhost:3001/record/add", {
+    await fetch("https://forum-backend.onrender.com/record/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

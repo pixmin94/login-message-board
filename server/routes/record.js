@@ -40,6 +40,7 @@ recordRoutes.route("/record/:id").get(function (req, res) {
 recordRoutes.route("/record/add").post(function (req, response) {
  let db_connect = dbo.getDb();
  let myobj = {
+   title: req.body.title,
    message: req.body.message,
    name: req.body.name,
  };
@@ -55,6 +56,7 @@ recordRoutes.route("/update/:id").post(function (req, response) {
  let myquery = { _id: ObjectId(req.params.id) };
  let newvalues = {
    $set: {
+    title: req.body.title,
     message: req.body.message,
     name: req.body.name,
    },

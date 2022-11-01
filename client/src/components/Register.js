@@ -3,7 +3,7 @@ import { Dialog } from '@headlessui/react'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 import app from "../firebase";
 
-function Register({ isOpen, setIsOpen }) {
+function Register({ isOpen, setIsOpen, user }) {
   const [form, setForm] = useState({
     email: "",
     password: ""
@@ -14,7 +14,6 @@ function Register({ isOpen, setIsOpen }) {
       return { ...prev, ...value };
     });
   }
-  
 
   async function handleSubmit(e){
     e.preventDefault()
@@ -23,8 +22,6 @@ function Register({ isOpen, setIsOpen }) {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        console.log(form.email)
-        console.log(user)
         alert("signed in!")
       })
       .catch((error) => {
@@ -34,8 +31,6 @@ function Register({ isOpen, setIsOpen }) {
       });
     
   }
-
-  
 
   return (
     <>
@@ -55,7 +50,7 @@ function Register({ isOpen, setIsOpen }) {
               </label> */}
               <label>
                 Confirm Password:
-                <input type="text" value={form.password} onChange={e => updateForm({password: e.target.value})}/>
+                <input type="password" value={form.password} onChange={e => updateForm({password: e.target.value})}/>
               </label>
               
               <input type="submit" value="Submit" />
