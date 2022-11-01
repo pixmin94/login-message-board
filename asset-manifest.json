@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/login-message-board/static/css/main.abd64e84.css",
+    "main.js": "/login-message-board/static/js/main.84ff7ad0.js",
+    "index.html": "/login-message-board/index.html",
+    "main.abd64e84.css.map": "/login-message-board/static/css/main.abd64e84.css.map",
+    "main.84ff7ad0.js.map": "/login-message-board/static/js/main.84ff7ad0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.abd64e84.css",
+    "static/js/main.84ff7ad0.js"
+  ]
+}
