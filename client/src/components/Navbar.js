@@ -14,11 +14,23 @@ function NavBar() {
     let [loginOpen, setLoginOpen] = useState(false)
     let [user, setUser] = useState()
     
-    useEffect (()=> {
-        const auth = getAuth(app);
-        setUser(auth.currentUser);
-        console.log(user)
-    })
+    // useEffect (()=> {
+    //     const auth = getAuth(app);
+    //     console.log(app)
+    //     setUser(auth.currentUser);
+    //     console.log(user)
+    //     localStorage.setItem('user', JSON.stringify(user))
+    // },[user])
+
+    useEffect(() => {
+        console.log("checking auth state in navbar")
+        const auth = getAuth(app)
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                setUser(user)
+            }
+        })
+    },[])
 
     return (
         <div>

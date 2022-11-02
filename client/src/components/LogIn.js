@@ -23,7 +23,9 @@ function Login({ isOpen, setIsOpen, user }) {
       .then((userCredential) => {
         // Signed in 
         // const user = userCredential.user;
+        setIsOpen(false);
         alert("signed in!")
+        
       })
       .catch((error) => {
         // const errorCode = error.code;
@@ -36,7 +38,9 @@ function Login({ isOpen, setIsOpen, user }) {
   function buttonClick() {
     if (user) {
         auth.signOut();
-        console.log(user)
+        setButton("Login")
+        alert("Logged out!")
+        window.location.reload();
     }
     else {
         setIsOpen(true)
@@ -44,10 +48,9 @@ function Login({ isOpen, setIsOpen, user }) {
   }
 
   useEffect(() => {
-    if (user) {
-        setButton("Logout")
-    }
-  })
+    console.log("checking user in login")
+    if (user) { setButton("Logout") }
+  }, [user])
 
   return (
     <>
@@ -55,7 +58,6 @@ function Login({ isOpen, setIsOpen, user }) {
       <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
         <Dialog.Panel>
           <Dialog.Title>Login</Dialog.Title>
-          <Dialog.Description>
             <form onSubmit={handleSubmit}>
               <label>
                 Email:
@@ -68,7 +70,6 @@ function Login({ isOpen, setIsOpen, user }) {
               
               <input type="submit" value="Submit" />
             </form>
-          </Dialog.Description>
           
           <button onClick={() => setIsOpen(false)}>Cancel</button>
         </Dialog.Panel>
