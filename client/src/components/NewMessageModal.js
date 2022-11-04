@@ -41,25 +41,23 @@ function NewMessageModal({ isOpen, setIsOpen }) {
       <button onClick={() => setIsOpen(true)}>New Message</button>
       <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
         <Dialog.Panel>
-          <Dialog.Title>Add a new message</Dialog.Title>
-          <Dialog.Description>
+          <Dialog.Title>Add a new message</Dialog.Title>          
             <form onSubmit={handleSubmit}>
-              <label>
-                Title:
-                <input type="text" value={form.title} onChange={e => updateForm({title: e.target.value})}/>
-              </label>
-              <label>
-                Message:
-                <textarea value={form.message} onChange={e => updateForm({message: e.target.value})}/>
-              </label>
-              <label>
-                Name:
-                <input type="text" value={form.name} onChange={e => updateForm({name: e.target.value})}/>
-              </label>
-              
-              <input type="submit" value="Submit" />
-            </form>
-          </Dialog.Description>
+            <label>
+              Title:
+              <input type="text" value={form.title} onChange={e => updateForm({title: e.target.value})}/>
+            </label>
+            <label>
+              Message:
+              <textarea value={form.message} onChange={e => updateForm({message: e.target.value})}/>
+            </label>
+            <label>
+              Name:
+              <input type="text" value={form.name} onChange={e => updateForm({name: e.target.value})}/>
+            </label>
+            
+            <input type="submit" value="Submit" />
+          </form>
           
           <button onClick={() => setIsOpen(false)}>Cancel</button>
         </Dialog.Panel>
