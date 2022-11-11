@@ -34,7 +34,7 @@ function NavBar() {
 
     return (
         <div>
-            <h1>Forum</h1>
+            <h1 class="text-3xl font-bold text-slate-500">Forum</h1>
             <Login isOpen={loginOpen} setIsOpen={setLoginOpen} user={user}/>
             <Register isOpen={registerOpen} setIsOpen={setRegisterOpen} user={user}/>
             {/* <button>New Message</button> */}

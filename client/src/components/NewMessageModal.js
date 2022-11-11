@@ -38,7 +38,7 @@ function NewMessageModal({ isOpen, setIsOpen }) {
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)}>New Message</button>
+      <button class="button-navbar" onClick={() => setIsOpen(true)}>New Message</button>
       <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
         <Dialog.Panel>
           <Dialog.Title>Add a new message</Dialog.Title>          

@@ -54,7 +54,7 @@ function Login({ isOpen, setIsOpen, user }) {
 
   return (
     <>
-      <button onClick={buttonClick}>{button}</button>
+      <button class="button-navbar" onClick={buttonClick}>{button}</button>
       <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
         <Dialog.Panel>
           <Dialog.Title>Login</Dialog.Title>
