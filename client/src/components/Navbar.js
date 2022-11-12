@@ -33,13 +33,14 @@ function NavBar() {
     },[])
 
     return (
-        <div>
-            <h1 class="text-3xl font-bold text-slate-500">Forum</h1>
-            <Login isOpen={loginOpen} setIsOpen={setLoginOpen} user={user}/>
-            <Register isOpen={registerOpen} setIsOpen={setRegisterOpen} user={user}/>
-            {/* <button>New Message</button> */}
-            <Modal isOpen={msgOpen} setIsOpen={setMsgOpen}/>
-            
+        <div class="flex justify-between bg-slate-50">
+            <h1 class="p-2 m-1 text-3xl font-bold text-slate-500">Message Board</h1>
+            <div class="flex justify-end">
+                <Login isOpen={loginOpen} setIsOpen={setLoginOpen} user={user}/>
+                <Register isOpen={registerOpen} setIsOpen={setRegisterOpen} user={user}/>
+                {/* <button>New Message</button> */}
+                <Modal isOpen={msgOpen} setIsOpen={setMsgOpen}/>
+            </div>
         </div>
     );
 }

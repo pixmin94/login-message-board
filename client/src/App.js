@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React from 'react';
 import NavBar from './components/Navbar'
-import Messages from './components/Messages'
+import Message from './components/Message'
 import './App.css';
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
     return (
       <div className="App">
         <NavBar />
-        <Messages />
+        <Message />
         {/* <header className="App-header">
           <p>{!data ? "Loading..." : data}</p>
         </header> */}

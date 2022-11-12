@@ -4,7 +4,7 @@
 
 @layer components {
   .button-navbar {
-    @apply p-2 m-2 rounded bg-slate-50 border border-solid border-slate-500 text-slate-500;
+    @apply px-2 py-1 mx-1 my-3 rounded-lg bg-slate-100 border-2 border-solid border-slate-300 text-slate-500;
   }
 }
 
