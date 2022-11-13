@@ -24,13 +24,16 @@ export default function Message(){
     }, [records.length]);
 
     return (
-        <div>
+        <div class="flex flex-col justify-center space-y-3">
             {records.map(record => {
                 return (
-                    <div key={record._id}>
+                    <div 
+                        class="text-left border-2 rounded-lg px-8 py-3 mx-12 mt-4" 
+                        key={record._id}
+                    >
                         <h3>{record.title}</h3>
                         <span>"{record.message}"</span><br></br>
-                        <span>- {record.name}</span>
+                        <span>~ {record.name}</span>
                     </div>
                 )
             })}
