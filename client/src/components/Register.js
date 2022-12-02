@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Dialog } from '@headlessui/react'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 import app from "../firebase";
+import Modal from "./Modal"
 
 function Register({ isOpen, setIsOpen, user }) {
   const [form, setForm] = useState({
@@ -48,30 +49,24 @@ function Register({ isOpen, setIsOpen, user }) {
 
   return (
     <>
-      <button onClick={buttonClick}>{button}</button>
-      <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-        <Dialog.Panel>
-          <Dialog.Title>Register</Dialog.Title>
-            <form onSubmit={handleSubmit}>
-                <label>
-                Email:
-                <input type="text" value={form.email} onChange={e => updateForm({email: e.target.value})}/>
-                </label>
-                {/* <label>
-                Password:
-                <input type="text" value={password} onChange={}/>
-                </label> */}
-                <label>
-                Confirm Password:
-                <input type="password" value={form.password} onChange={e => updateForm({password: e.target.value})}/>
-                </label>
-                
-                <input type="submit" value="Submit" />
-            </form>
+      <Modal 
+        isOpen={isOpen} 
+        setIsOpen={setIsOpen}
+        buttonClick={buttonClick}
+        button={button}
+      >
+        
+      <Dialog.Title class="text-xl font-medium leading-6 text-gray-900 mt-2">Register</Dialog.Title>
+      <form class="mt-3" onSubmit={handleSubmit}>
+          <input class="input-box" type="text" placeholder="Email" value={form.email} onChange={e => updateForm({email: e.target.value})}/>
+          {/* <input class="input-box" type="password" placeholder="Password" value={form.password} onChange={e => updateForm({password: e.target.value})}/> */}
+          <input class="input-box m-2" type="password" placeholder="Confirm Password" value={form.password} onChange={e => updateForm({password: e.target.value})}/>
           
-          <button onClick={() => setIsOpen(false)}>Cancel</button>
-        </Dialog.Panel>
-      </Dialog>
+          <input class="button-navbar" type="submit" value="Submit" />
+          <button class="button-navbar" type="button" onClick={() => setIsOpen(false)}>Cancel</button>
+      </form>
+        
+      </Modal>
     </>
 
   )
