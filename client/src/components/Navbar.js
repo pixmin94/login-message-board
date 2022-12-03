@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Modal from './NewMessageModal';
+import NewMessage from './NewMessageModal';
 import Register from './Register';
 import Login from './LogIn';
 import { getAuth } from 'firebase/auth'
@@ -38,8 +38,7 @@ function NavBar() {
             <div class="flex justify-end">
                 <Login isOpen={loginOpen} setIsOpen={setLoginOpen} user={user}/>
                 <Register isOpen={registerOpen} setIsOpen={setRegisterOpen} user={user}/>
-                {/* <button>New Message</button> */}
-                <Modal isOpen={msgOpen} setIsOpen={setMsgOpen}/>
+                <NewMessage isOpen={msgOpen} setIsOpen={setMsgOpen}/>
             </div>
         </div>
     );
