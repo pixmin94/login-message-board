@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
 import { Dialog } from '@headlessui/react'
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import app from "../firebase";
 import Modal from "./Modal"
 
 function Register({ isOpen, setIsOpen, user }) {
   const [form, setForm] = useState({
+    username: "",
     email: "",
     password: "",
     confirmPassword: ""
@@ -14,7 +15,7 @@ function Register({ isOpen, setIsOpen, user }) {
   const [formError, setFormError] = useState({
     email: "",
     password: "",
-    confirmPassword: "",
+    confirmPassword: ""
   })
 
   const [button, setButton] = useState("Register")
@@ -65,7 +66,9 @@ function Register({ isOpen, setIsOpen, user }) {
       })
       return
     }
+    
     setFormError(inputError);
+    handleSubmit(e);
   }
 
   async function handleSubmit(e){
@@ -73,8 +76,8 @@ function Register({ isOpen, setIsOpen, user }) {
     const auth = getAuth(app);
     createUserWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
-        // Signed in 
         const user = userCredential.user;
+        user.updateDisplayName(form.username)
         alert("signed in!")
       })
       .catch((error) => {
@@ -86,10 +89,10 @@ function Register({ isOpen, setIsOpen, user }) {
 
   function buttonClick() {
     if (user) {
-        console.log("navigate to account page here")
+      window.location.href="/login-message-board/account";
     }
     else {
-        setIsOpen(true)
+      setIsOpen(true)
     }
   }
 
@@ -109,6 +112,7 @@ function Register({ isOpen, setIsOpen, user }) {
         
       <Dialog.Title class="text-xl font-medium leading-6 text-gray-900 mt-2">Register</Dialog.Title>
       <form class="mt-3" onSubmit={validateInput}>
+          <input class="input-box" type="text" placeholder="Username" value={form.username} onChange={e => updateForm({username: e.target.value})}/>
           <input class="input-box" type="text" placeholder="Email" value={form.email} onChange={e => updateForm({email: e.target.value})}/>
           <p>{formError.email}</p>
           <input class="input-box m-2" type="password" placeholder="Password" value={form.password} onChange={e => updateForm({password: e.target.value})}/>
