@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import Spinner from "./Spinner"
 
 export default function Message(){
     const [records, setRecords] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     // This method fetches the records from the database.
     useEffect(() => {
@@ -18,12 +20,16 @@ export default function Message(){
         setRecords(records);
         }
     
-        getRecords();
+        getRecords().then(() => setLoading(false));
     
         return;
     }, [records.length]);
 
-    return (
+    return loading ? (
+        <div class ="flex justify-center items-center absolute inset-0 m-auto">
+            <Spinner />
+        </div>
+        ) : (
         <div class="flex flex-col justify-center space-y-3">
             {records.map(record => {
                 return (
