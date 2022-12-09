@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React from 'react';
 import NavBar from './components/Navbar'
 import Message from './components/Message'
+import Account from './components/Account'
 import './App.css';
 
 function App() {
@@ -14,13 +15,13 @@ function App() {
     // }, []);
   
     return (
-      <div className="App">
+      <BrowserRouter>
         <NavBar />
-        <Message />
-        {/* <header className="App-header">
-          <p>{!data ? "Loading..." : data}</p>
-        </header> */}
-      </div>
+        <Routes>
+          <Route path="/login-message-board" element={<Message />} />
+          <Route path="/login-message-board/account" element={<Account />} />
+        </Routes>
+      </BrowserRouter>
     );
 }
 
