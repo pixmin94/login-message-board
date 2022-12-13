@@ -49,7 +49,6 @@ function Login({ isOpen, setIsOpen, user }) {
   }
 
   useEffect(() => {
-    console.log("checking user in login")
     if (user) { setButton("Logout") }
   }, [user])
 

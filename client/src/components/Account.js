@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { getAuth, updateProfile } from "firebase/auth";
-
+import app from "../firebase";
+import Spinner from "./Spinner"
 
 function Account() {
-    const auth = getAuth();
-    const user = auth.currentUser;
+    const auth = getAuth(app);
+    let [user, setUser] = useState()
+    const [loading, setLoading] = useState(true);
 
     const [form, setForm] = useState({
         username: "",
@@ -17,10 +19,20 @@ function Account() {
           return { ...prev, ...value };
         })
       }
+
+    useEffect(() => {
+        console.log("checking auth state in account")
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                setUser(user)
+                setLoading(false)
+            }
+        })
+    },[])
     
     async function handleSubmit(e) {
         e.preventDefault();
-
+        
         if (form.username) {
             updateProfile(auth.currentUser, {
                 displayName: form.username
@@ -31,8 +43,11 @@ function Account() {
         }
     }
 
-
-    return (
+    return loading ? (
+        <div class ="flex justify-center items-center absolute inset-0 m-auto">
+            <Spinner />
+        </div>
+        ) : (
         <>
         <br/>
          <p class="flex justify-center">Currently logged into {user.email}, {user.displayName} </p>
