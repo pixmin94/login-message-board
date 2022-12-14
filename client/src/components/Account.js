@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getAuth, updateProfile } from "firebase/auth";
+import { getAuth, updateProfile, updateEmail, updatePassword } from "firebase/auth";
 import app from "../firebase";
 import Spinner from "./Spinner"
 
@@ -32,12 +32,29 @@ function Account() {
     
     async function handleSubmit(e) {
         e.preventDefault();
-        
+
         if (form.username) {
             updateProfile(auth.currentUser, {
                 displayName: form.username
             }).then(() => {
                 alert("Username updated!")
+                window.location.reload();
+            })
+            return
+        }
+
+        if (form.email) {
+            updateEmail(auth.currentUser, form.email).then(() => {
+                alert("Email updated!")
+                window.location.reload();
+            })
+            return
+        }
+
+        if (form.password) {
+            updatePassword(auth.currentUser, form.password).then(() => {
+                alert("Password updated!")
+                window.location.reload();
             })
             return
         }
