@@ -1,8 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { getAuth } from "firebase/auth";
 import { Dialog } from '@headlessui/react'
 import Modal from './Modal'
 
 function NewMessageModal({ isOpen, setIsOpen }) {
+  const auth = getAuth();
+  let [user, setUser] = useState()
+
   const [form, setForm] = useState({
     title: "",
     message: "",
@@ -15,6 +19,15 @@ function NewMessageModal({ isOpen, setIsOpen }) {
     });
   }
   
+  useEffect(() => {
+    console.log("checking auth state in account")
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            setUser(user)
+            
+        }
+    })
+  },[])
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -32,7 +45,7 @@ function NewMessageModal({ isOpen, setIsOpen }) {
       return;
     });
   
-    setForm({ title: "", message: "", name: "" });
+    setForm({ title: "", message: "", name: user.displayName });
     setIsOpen(false);
     window.location.reload();
   }
@@ -52,7 +65,8 @@ function NewMessageModal({ isOpen, setIsOpen }) {
         <form class="mt-3" onSubmit={handleSubmit}>
           <input class="input-box" type="text" placeholder="Title" value={form.title} onChange={e => updateForm({title: e.target.value})}/>
           <textarea class="input-box m-2" placeholder="Message" value={form.message} onChange={e => updateForm({message: e.target.value})}/>
-          <input class="input-box" type="text" placeholder="Name" value={form.name} onChange={e => updateForm({name: e.target.value})}/>
+          {/* <p>Currently logged into: {user.displayName}</p> */}
+          {/* <input class="input-box" type="text" placeholder="Name" value={form.name} onChange={e => updateForm({name: e.target.value})}/> */}
           
           <input class="button-navbar" type="submit" value="Submit" />
           <button class="button-navbar" type="button" onClick={() => setIsOpen(false)}>Cancel</button>
